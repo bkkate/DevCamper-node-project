@@ -12,6 +12,8 @@ app.use(express.json());
 const connectDB = require('./config/db');
 // Route files import
 const bootcamps = require("./routes/bootcamps");
+// Custom Error Handler import
+const errorHandler = require('./middleware/error');
 
 const dotenv = require("dotenv");
 // Load environment variables
@@ -27,6 +29,8 @@ if (process.env.NODE_ENV === "development") {
 
 // Mount Routers: mounting routes to specific URLs
 app.use("/api/v1/bootcamps", bootcamps);
+// custom error handler import
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
